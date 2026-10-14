@@ -79,7 +79,7 @@ Corporate 要在專輯公開前，選定一套 AI 開發工具，擋住敏感資
 | RAG | Chroma（本機持久化） | 條款切塊、embeddings、附出處的檢索 |
 | Embeddings | 有金鑰時用 OpenAI 相容 embeddings；沒有金鑰時用 Chroma 內建本機模型，或不需下載的雜湊向量（斷網可用） | 讓沒有金鑰、沒有網路也能檢索 |
 | LLM | OpenAI 相容 API（`OPENAI_BASE_URL` 可換） | 產生回答、程式審查、CLI 評比 |
-| 資料 | SQLite | 使用者、稽核紀錄、工單、指標 |
+| 資料 | SQLite | 稽核紀錄、工單、問答紀錄（指標由這三張表計算） |
 | Webhook | 本機 FastAPI 端點、HMAC 簽章 | 法務工單 |
 | 身分 | 三個群組加停權（模擬） | 對應 SAML 群組與 SCIM，見 [docs/identity-saml-scim.md](docs/identity-saml-scim.md) |
 | 評比 | Python CLI 加 IDE 手動紀錄 | 固定任務、固定評分表 |
@@ -197,6 +197,7 @@ release-gate-eval qa                          # 跑授權問答標準題組，�
 | `LEGAL_WEBHOOK_URL` | 法務工單 webhook | `http://localhost:8000/webhooks/legal-ticket` |
 | `WEBHOOK_SECRET` | webhook HMAC 簽章金鑰 | 演示用預設值 |
 | `ADMIN_TOKEN` | 停權／復權 API 的管理權杖，模擬 IdP 呼叫 SCIM 時帶的權杖 | `demo-admin-token` |
+| `DATABASE_PATH` | SQLite 資料庫檔案位置 | `var/release_gate.db` |
 
 ## 文件
 

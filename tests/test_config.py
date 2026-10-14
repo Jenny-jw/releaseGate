@@ -1,6 +1,6 @@
 import pytest
 
-from app.config import DEFAULT_OPENAI_BASE_URL, Settings
+from app.config import DEFAULT_OPENAI_BASE_URL, PROJECT_ROOT, Settings
 
 
 def test_empty_env_is_keyless_with_defaults():
@@ -9,6 +9,13 @@ def test_empty_env_is_keyless_with_defaults():
     assert settings.keyless
     assert settings.openai_base_url == DEFAULT_OPENAI_BASE_URL
     assert settings.local_embeddings == "chroma"
+    assert settings.database_path == PROJECT_ROOT / "var" / "release_gate.db"
+
+
+def test_database_path_accepts_absolute_path(tmp_path):
+    settings = Settings.from_env({"DATABASE_PATH": str(tmp_path / "demo.db")})
+
+    assert settings.database_path == tmp_path / "demo.db"
 
 
 def test_blank_key_is_keyless():

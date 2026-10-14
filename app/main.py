@@ -5,11 +5,13 @@ from fastapi import Depends, FastAPI
 
 from app import identity
 from app.config import get_settings
+from app.db import get_database
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     get_settings()
+    get_database()
     identity.get_directory()
     yield
 

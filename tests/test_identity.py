@@ -1,4 +1,3 @@
-import logging
 from typing import Annotated
 
 import pytest
@@ -7,25 +6,18 @@ from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 
 from app.config import get_settings
+from app.db import get_database
 from app.identity import (
     USERS_FILE,
     Directory,
     User,
     UsersFile,
-    get_directory,
     load_directory,
     require_group,
     require_pilot,
 )
 from app.main import app
 from app.pilot import load_pilot
-
-
-@pytest.fixture(autouse=True)
-def fresh_directory():
-    get_directory.cache_clear()
-    yield
-    get_directory.cache_clear()
 
 
 @pytest.fixture
@@ -64,13 +56,15 @@ def test_unknown_user_is_401(client):
         ("POST", "/admin/users/kai/reactivate"),
     ],
 )
-def test_suspended_kai_gets_403_everywhere(client, caplog, method, path):
-    with caplog.at_level(logging.WARNING, logger="release_gate.audit"):
-        response = client.request(method, path, headers={**as_user("kai"), **admin_headers()})
+def test_suspended_kai_gets_403_everywhere_and_is_audited(client, method, path):
+    response = client.request(method, path, headers={**as_user("kai"), **admin_headers()})
 
     assert response.status_code == 403
-    assert "user=kai" in caplog.text
-    assert "suspended_account" in caplog.text
+    [event] = get_database().recent_audit_events()
+    assert event["user_id"] == "kai"
+    assert event["endpoint"] == path
+    assert event["decision"] == "block"
+    assert event["detection_type"] == "suspended_account"
 
 
 @pytest.mark.parametrize(

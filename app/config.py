@@ -17,6 +17,7 @@ DEFAULT_OPENAI_BASE_URL = "https://api.openai.com/v1"
 DEFAULT_LOCAL_EMBEDDINGS = "chroma"
 DEFAULT_LEGAL_WEBHOOK_URL = "http://localhost:8000/webhooks/legal-ticket"
 DEFAULT_WEBHOOK_SECRET = "demo-webhook-secret"
+DEFAULT_ADMIN_TOKEN = "demo-admin-token"
 
 
 @dataclass(frozen=True)
@@ -28,6 +29,7 @@ class Settings:
     local_embeddings: str
     legal_webhook_url: str
     webhook_secret: str = field(repr=False)
+    admin_token: str = field(repr=False)
 
     @property
     def keyless(self) -> bool:
@@ -50,6 +52,7 @@ class Settings:
             local_embeddings=local_embeddings,
             legal_webhook_url=_get(env, "LEGAL_WEBHOOK_URL") or DEFAULT_LEGAL_WEBHOOK_URL,
             webhook_secret=_get(env, "WEBHOOK_SECRET") or DEFAULT_WEBHOOK_SECRET,
+            admin_token=_get(env, "ADMIN_TOKEN") or DEFAULT_ADMIN_TOKEN,
         )
 
 

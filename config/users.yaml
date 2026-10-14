@@ -1,0 +1,41 @@
+# 演示用虛構資料：帳號與部門皆為虛構。
+#
+# 正式環境這份名單由 IdP 同步而來：groups 對應 SAML 斷言的群組屬性，active 對應 SCIM 的 active。
+# 這裡只是種子資料；停權與復權在執行期間生效，重新啟動後回到這份檔案的狀態。
+
+departments:
+  marketing: 行銷
+  support: 客服
+  legal: 法務
+  release-eng: 上架工程組
+
+users:
+  - id: amy
+    department: marketing
+    groups: [employees]
+    active: true
+
+  - id: ben
+    department: support
+    groups: [employees]
+    active: true
+
+  - id: lin
+    department: legal
+    groups: [employees]
+    active: true
+
+  - id: chen
+    department: release-eng
+    groups: [engineers]
+    active: true
+
+  - id: vendor01
+    department: release-eng
+    groups: [contractors]
+    active: true
+
+  - id: kai
+    department: release-eng
+    groups: [engineers]
+    active: false

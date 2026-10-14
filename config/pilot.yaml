@@ -1,0 +1,18 @@
+# 演示用虛構資料：門檻是範例值，正式試點前要和各團隊確認。
+#
+# 試點以團隊（部門）為單位開放；部門代號定義在 config/users.yaml。
+
+# 目前在試點內的團隊
+pilot_teams:
+  - legal
+  - release-eng
+
+# 依序開放的候選團隊；門檻全部達標才能開放下一個
+next_teams:
+  - support
+
+thresholds:
+  redteam_misses_max: 0          # 闖關測試漏擋數上限
+  qa_accuracy_min: 0.85          # 授權問答答對率下限
+  referral_rate_max: 0.30        # 轉介率上限（轉介工單數 ÷ 提問數）
+  ticket_delivery_rate_min: 1.0  # 工單送達率下限

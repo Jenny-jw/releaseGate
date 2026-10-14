@@ -100,6 +100,8 @@ Corporate 要在專輯公開前，選定一套 AI 開發工具，擋住敏感資
 
 閘道對所有人生效，因為治理規則不分是否在試點內。助理與開發工具只開給試點名單上的團隊。
 
+停權演示用 `POST /admin/users/{id}/suspend` 與 `/reactivate`，對應 IdP 透過 SCIM 送出 `PATCH active=false`。這兩個端點由 IdP 呼叫，不看 `X-Demo-User`，而是要求 `Authorization: Bearer <ADMIN_TOKEN>`。停權立即生效，重新啟動後回到 `config/users.yaml` 的狀態。
+
 演示帳號（虛構）：
 
 | 帳號 | 部門 | 群組 | 試點 |
@@ -194,6 +196,7 @@ release-gate-eval qa                          # 跑授權問答標準題組，�
 | `LOCAL_EMBEDDINGS` | 沒有金鑰時的 embeddings：`chroma`（本機模型，第一次執行需下載）或 `hash`（不需下載、斷網可用） | `chroma`，下載失敗時自動改用 `hash` |
 | `LEGAL_WEBHOOK_URL` | 法務工單 webhook | `http://localhost:8000/webhooks/legal-ticket` |
 | `WEBHOOK_SECRET` | webhook HMAC 簽章金鑰 | 演示用預設值 |
+| `ADMIN_TOKEN` | 停權／復權 API 的管理權杖，模擬 IdP 呼叫 SCIM 時帶的權杖 | `demo-admin-token` |
 
 ## 文件
 

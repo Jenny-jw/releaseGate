@@ -25,7 +25,14 @@ def test_invalid_local_embeddings_is_rejected():
 
 
 def test_repr_hides_secrets():
-    settings = Settings.from_env({"OPENAI_API_KEY": "sk-secret", "WEBHOOK_SECRET": "hmac-secret"})
+    settings = Settings.from_env(
+        {
+            "OPENAI_API_KEY": "sk-secret",
+            "WEBHOOK_SECRET": "hmac-secret",
+            "ADMIN_TOKEN": "admin-secret",
+        }
+    )
 
     assert "sk-secret" not in repr(settings)
     assert "hmac-secret" not in repr(settings)
+    assert "admin-secret" not in repr(settings)

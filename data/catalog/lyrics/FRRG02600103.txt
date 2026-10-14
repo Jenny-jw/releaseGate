@@ -1,0 +1,11 @@
+# 演示用虛構資料：本專案自行創作的歌詞，不引用任何真實作品。
+# Pomme 是真實歌手，但這首歌與歌詞是虛構的，並非她的作品。
+# Pomme〈La chambre du bernard-l'ermite〉，專輯《Entre deux marées》，ISRC FRRG02600103
+Ma chambre est un coquillage qu'on m'a prêté
+Sur les murs, les vagues laissées par ceux d'avant
+Chaque fois que je grandis, il faut déménager
+Traîner sur le sable tout ce que je possède
+Tu me demandes si l'ancienne maison me manque
+Je ne me souviens que de l'écho qu'elle rendait
+Le jour où je trouverai la coquille à ma taille
+Je fermerai la porte et toute la mer se taira

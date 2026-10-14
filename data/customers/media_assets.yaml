@@ -1,0 +1,66 @@
+# 演示用虛構資料：客戶、影音檔、連結皆為虛構，網址使用不會連到外部的 .internal 網域。
+#
+# BlendVision 企業客戶的影音中繼資料，用來測試閘道能不能認出客戶影音。
+# 客戶代號格式：BVC- 加 5 位數字。
+# 內部儲存連結有兩種格式：
+#   原始檔  s3://bv-media-vault-prod/customers/<客戶代號>/<影音編號>/<檔名>
+#   播放檔  https://vault.blendvision.internal/c/<客戶代號>/a/<影音編號>/hls/index.m3u8
+
+customers:
+  - code: BVC-10023
+    name: 晨光電視台
+    industry: 電視台
+
+  - code: BVC-10057
+    name: 青嶼教育平台
+    industry: 線上教育
+
+  - code: BVC-20114
+    name: 北岸健身
+    industry: 連鎖健身房
+
+assets:
+  - asset_id: AST-7F3K2Q
+    customer: BVC-10023
+    title: 晨間新聞 2026-10-01 完整版
+    file_name: morning-news-20261001-master.mp4
+    mime_type: video/mp4
+    duration_seconds: 3540
+    storage_url: s3://bv-media-vault-prod/customers/BVC-10023/AST-7F3K2Q/morning-news-20261001-master.mp4
+    playback_url: https://vault.blendvision.internal/c/BVC-10023/a/AST-7F3K2Q/hls/index.m3u8
+
+  - asset_id: AST-9M2X8D
+    customer: BVC-10023
+    title: 颱風特報未剪輯素材
+    file_name: typhoon-raw-cam2.mxf
+    mime_type: application/mxf
+    duration_seconds: 1820
+    storage_url: s3://bv-media-vault-prod/customers/BVC-10023/AST-9M2X8D/typhoon-raw-cam2.mxf
+    playback_url: https://vault.blendvision.internal/c/BVC-10023/a/AST-9M2X8D/hls/index.m3u8
+
+  - asset_id: AST-4H6P1W
+    customer: BVC-10057
+    title: 高中數學第 3 單元 課程錄影
+    file_name: math-unit03-lesson.mov
+    mime_type: video/quicktime
+    duration_seconds: 2700
+    storage_url: s3://bv-media-vault-prod/customers/BVC-10057/AST-4H6P1W/math-unit03-lesson.mov
+    playback_url: https://vault.blendvision.internal/c/BVC-10057/a/AST-4H6P1W/hls/index.m3u8
+
+  - asset_id: AST-2Q8R5T
+    customer: BVC-20114
+    title: 會員專屬 HIIT 課程 第 12 集
+    file_name: hiit-ep12-1080p.mp4
+    mime_type: video/mp4
+    duration_seconds: 1500
+    storage_url: s3://bv-media-vault-prod/customers/BVC-20114/AST-2Q8R5T/hiit-ep12-1080p.mp4
+    playback_url: https://vault.blendvision.internal/c/BVC-20114/a/AST-2Q8R5T/hls/index.m3u8
+
+  - asset_id: AST-6C3N9V
+    customer: BVC-20114
+    title: 品牌形象廣告 30 秒版
+    file_name: brand-spot-30s.mp4
+    mime_type: video/mp4
+    duration_seconds: 30
+    storage_url: s3://bv-media-vault-prod/customers/BVC-20114/AST-6C3N9V/brand-spot-30s.mp4
+    playback_url: https://vault.blendvision.internal/c/BVC-20114/a/AST-6C3N9V/hls/index.m3u8
